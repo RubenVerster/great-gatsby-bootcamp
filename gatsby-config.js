@@ -7,7 +7,7 @@
 module.exports = {
   /* Your site config here */
   siteMetadata: {
-    title: "The Doobie Discussion",
+    title: "Doobie Discussion",
     author: "Ruben Verster",
   },
   plugins: [
@@ -15,8 +15,26 @@ module.exports = {
     //when you setup a plugin as an object, you have to provide the name using the 'resolve' label
     //and the benefit of doing it in an object is that you can expand on the plugin  object and provide the filesystem with what it needs (here it is the options object (on options, you have to provide the string and path to the directory on the filesystem ))
     //with this little bit of setup, we tell gatsby to source content from the filesystem
+
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: "gatsby-plugin-sharp",
+    },
+    {
+      resolve: "gatsby-transformer-remark",
+      options: {
+        plugins: [
+          {
+            resolve: "gatsby-remark-relative-images",
+          },
+          {
+            resolve: "gatsby-remark-images",
+            options: {
+              maxWidth: 750,
+              linkImagesToOriginal: false,
+            },
+          },
+        ],
+      },
     },
     {
       resolve: "gatsby-source-filesystem",

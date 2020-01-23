@@ -2,6 +2,8 @@ import React from "react"
 import Layout from "../pages/components/Layout"
 import { Link, graphql, useStaticQuery } from "gatsby"
 
+import blogStyles from "./blog.module.scss"
+
 const BlogPage = () => {
   //GraphQL query code
   //tag template literal
@@ -30,10 +32,10 @@ const BlogPage = () => {
   return (
     <Layout>
       <h1>Bud Blog</h1>
-      <ul>
+      <ul className={blogStyles.posts}>
         {data.allMarkdownRemark.edges.map(edge => {
           return (
-            <li>
+            <li className={blogStyles.post}>
               <Link to={`/blog/${edge.node.fields.slug}`}>
                 <h2>{edge.node.frontmatter.title}</h2>
                 <p>{edge.node.frontmatter.date}</p>
