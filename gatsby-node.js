@@ -1,21 +1,21 @@
 const path = require("path")
+//we get this from contentful, so no need :P
+// module.exports.onCreateNode = ({ node, actions }) => {
+//   const { createNodeField } = actions
 
-module.exports.onCreateNode = ({ node, actions }) => {
-  const { createNodeField } = actions
+//   if (node.internal.type === "MarkdownRemark") {
+//     //this fetches all the slugs from your files and removes the file extension
+//     const slug = path.basename(node.fileAbsolutePath, ".md")
 
-  if (node.internal.type === "MarkdownRemark") {
-    //this fetches all the slugs from your files and removes the file extension
-    const slug = path.basename(node.fileAbsolutePath, ".md")
-
-    console.log(
-      `### ### ### ### ### \nMarkdownRemark Node Found!!! \n### ### ### ### ### \n
-      ${JSON.stringify(slug, undefined, 2)}
-      ${JSON.stringify(node, undefined, 2)}`
-    )
-    // add slug to your markdown node
-    createNodeField({ node, name: "slug", value: slug })
-  }
-}
+//     console.log(
+//       `### ### ### ### ### \nMarkdownRemark Node Found!!! \n### ### ### ### ### \n
+//       ${JSON.stringify(slug, undefined, 2)}
+//       ${JSON.stringify(node, undefined, 2)}`
+//     )
+//     // add slug to your markdown node
+//     createNodeField({ node, name: "slug", value: slug })
+//   }
+// }
 
 //node api used from node-docs, createPages
 //this gives us everything we need to dynamically generate new pages for the site
@@ -28,19 +28,17 @@ module.exports.createPages = async ({ graphql, actions }) => {
 
   const response = await graphql(`
     query {
-      allMarkdownRemark {
+      allContentfulBlogPost {
         edges {
           node {
-            fields {
-              slug
-            }
+            slug
           }
         }
       }
     }
   `)
 
-  response.data.allMarkdownRemark.edges.forEach(edge => {
+  response.data.allContentfulBlogPost.edges.forEach(edge => {
     //create pages for each blog
     createPage({
       //component youre trying to render, this is from the const above
@@ -49,14 +47,14 @@ module.exports.createPages = async ({ graphql, actions }) => {
       //get path to template
       //where can you access the page were creating
       //like creating end points for users to access
-      path: `/blog/${edge.node.fields.slug}`,
+      path: `/blog/${edge.node.slug}`,
 
       //get markdown data
       //this contains info you can pass down to your template
       //we just need the slug
       //the slug contains data you can pass down to the template (date, body...)
       context: {
-        slug: edge.node.fields.slug,
+        slug: edge.node.slug,
       },
     })
   })
