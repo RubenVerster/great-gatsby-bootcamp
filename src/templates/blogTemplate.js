@@ -2,7 +2,7 @@ import React from "react"
 import { graphql } from "gatsby"
 import Head from "../pages/components/Head"
 
-import Layout from "../pages/components/layout"
+import Layout from "../pages/components/Layout"
 
 //this package allows us to use Contentful and graphql in a way as to generate react components from the data that has been saved in the JSON body of every blog post
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
