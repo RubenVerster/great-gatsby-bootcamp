@@ -18,8 +18,12 @@ const Header = () => {
   return (
     <header>
       <Link className={headerStyles.title} to="/">
-        <h1>{data.site.siteMetadata.title}</h1>
+        <div style={{ display: "flex" }}>
+          <i class="fas fa-cannabis fa-5"></i>
+          <h1> {data.site.siteMetadata.title}</h1>
+        </div>
       </Link>
+      <hr />
       <nav>
         <ul className={headerStyles.navList}>
           <li>

@@ -5,7 +5,11 @@ const IndexPage = () => {
   return (
     <Layout>
       <Head title="Home" />
-      <h1>Hallo</h1>
+      <div style={{ display: "flex" }}>
+        <h1>Hallo</h1>
+        <i class="fab fa-3x fa-angellist"></i>
+      </div>
+
       <h2>I'm Ruben. And I'm 420 Friendly!</h2>
     </Layout>
   )

@@ -1,5 +1,6 @@
 .header {
   padding: 1rem 0 3rem;
+  margin: 50px !important;
 }
 
 .title {
@@ -25,9 +26,15 @@
 }
 
 .nav-item:hover {
-  color: #666;
+  color: rgb(89, 202, 85);
 }
 
 .active-nav-item {
-  color: #333;
+  color: rgb(46, 129, 43);
+}
+
+i {
+  margin-right: 15px;
+  color: rgb(89, 202, 85);
+  margin-left: 15px;
 }

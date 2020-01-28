@@ -1,5 +1,5 @@
 import React from "react"
-import { graphql, useStaticQuery } from "gatsby"
+import { graphql, useStaticQuery, Link } from "gatsby"
 
 const Footer = () => {
   //GraphQL query code
@@ -17,7 +17,9 @@ const Footer = () => {
   return (
     <div>
       <footer>
-        <p>Copyright {data.site.siteMetadata.author}</p>
+        <Link to="/" style={{ textDecoration: "none", color: "#222" }}>
+          <p>Copyright &copy; {data.site.siteMetadata.author}</p>
+        </Link>
       </footer>
     </div>
   )

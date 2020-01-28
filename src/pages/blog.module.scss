@@ -14,10 +14,15 @@
   }
 
   a:hover {
-    background: #e4e4e4;
+    background: rgba(89, 202, 85, 0.75);
+    transition: ease-in-out 0.3s;
+    p {
+      color: #f4f4f4;
+    }
   }
   h2 {
     margin-bottom: 0;
+    font-size: 2rem;
   }
   p {
     color: #777;
