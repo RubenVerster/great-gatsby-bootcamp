@@ -7,7 +7,7 @@
 module.exports = {
   /* Your site config here */
   siteMetadata: {
-    title: "Doobie Discussion",
+    title: `The Portfolio | Ruben Verster`,
     author: "Ruben Verster",
   },
   plugins: [

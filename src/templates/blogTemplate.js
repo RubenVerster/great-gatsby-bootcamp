@@ -21,11 +21,10 @@ import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 // `
 
 export const query = graphql`
-  query($slug: String!) {
-    contentfulBlogPost(slug: { eq: $slug }) {
+  query {
+    contentfulBlogPost {
       title
-      publishedDate(formatString: "MMMM Do, YYYY")
-
+      publishedDate
       body {
         json
       }
@@ -36,6 +35,8 @@ export const query = graphql`
 const Blog = props => {
   //an 'options' object is required for using images in your Contentful blog posts and remember to pass it in as the second argument in the 'documentToReactComponents' method
   //now we are able to determine how certain node types will render
+
+  //These are the lowkey 'settings' when using the documentToReactComponents method
   const options = {
     renderNode: {
       "embedded-asset-block": node => {
@@ -48,12 +49,12 @@ const Blog = props => {
   return (
     <Layout>
       <Head title={props.data.contentfulBlogPost.title} />
-      <h1>{props.data.contentfulBlogPost.title}</h1>
-      <p>{props.data.contentfulBlogPost.publishedDate}</p>
+      <h1>{this.data.contentfulBlogPost.title}</h1>
+      <p>{this.data.contentfulBlogPost.publishedDate}</p>
 
       {/* pass 'options' as the second argument */}
       {documentToReactComponents(
-        props.data.contentfulBlogPost.body.json,
+        props.data.allContentfulBlogPost.body.json,
         options
       )}
     </Layout>
